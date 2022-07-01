@@ -171,25 +171,25 @@ pub fn handle_mint_nft<'info>(
         current += (num_accounts as usize) * (1 + 32);
         let program_id = read_pubkey(&mut current, &instruction_sysvar).unwrap();
 
-        if !cmp_pubkeys(&program_id, &crate::id())
-            && !cmp_pubkeys(&program_id, &spl_token::id())
-            && !cmp_pubkeys(
-                &program_id,
-                &anchor_lang::solana_program::system_program::ID,
-            )
-            && !cmp_pubkeys(&program_id, &A_TOKEN)
-            && !cmp_pubkeys(&program_id, &SYNFT_ID)
-        {
-            msg!("Transaction had ix with program id {}", program_id);
-            punish_bots(
-                CandyError::SuspiciousTransaction,
-                payer.to_account_info(),
-                ctx.accounts.candy_machine.to_account_info(),
-                ctx.accounts.system_program.to_account_info(),
-                BOT_FEE,
-            )?;
-            return Ok(());
-        }
+        // if !cmp_pubkeys(&program_id, &crate::id())
+        //     && !cmp_pubkeys(&program_id, &spl_token::id())
+        //     && !cmp_pubkeys(
+        //         &program_id,
+        //         &anchor_lang::solana_program::system_program::ID,
+        //     )
+        //     && !cmp_pubkeys(&program_id, &A_TOKEN)
+        //     && !cmp_pubkeys(&program_id, &SYNFT_ID)
+        // {
+        //     msg!("Transaction had ix with program id {}", program_id);
+        //     punish_bots(
+        //         CandyError::SuspiciousTransaction,
+        //         payer.to_account_info(),
+        //         ctx.accounts.candy_machine.to_account_info(),
+        //         ctx.accounts.system_program.to_account_info(),
+        //         BOT_FEE,
+        //     )?;
+        //     return Ok(());
+        // }
     }
 
     let mut price = candy_machine.data.price;

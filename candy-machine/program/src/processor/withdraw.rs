@@ -10,7 +10,7 @@ pub struct WithdrawFunds<'info> {
     #[account(address = candy_machine.authority)]
     authority: Signer<'info>,
     // > Only if collection
-    // CollectionPDA account
+    // CollectionPda account
 }
 
 pub fn handle_withdraw_funds<'info>(ctx: Context<WithdrawFunds<'info>>) -> Result<()> {
